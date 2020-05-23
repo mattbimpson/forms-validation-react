@@ -45,6 +45,7 @@ export enum ValidatorType {
             if (!rule.message) {
               continue;
             }
+            messages.push(rule.message);
           }
         }
       }
