@@ -20,4 +20,10 @@ describe('validation service', () => {
     expect(result.valid).toEqual(false);
     expect(result.messages.length).toEqual(1);
   });
+
+  it('should return false for an invalid phone number', () => {
+    const result = ValidationService.validate('aaaa', [ValidatorType.EMAIL]);
+    expect(result.valid).toEqual(false);
+    expect(result.messages.length).toEqual(1);
+  });
 });
