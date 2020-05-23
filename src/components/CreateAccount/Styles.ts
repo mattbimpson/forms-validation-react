@@ -27,7 +27,7 @@ export const FormItem =
     `;
 
 export const InputButton =
-    styled.input.attrs({ type: 'button' })`
+    styled.button`
         border-radius: 5px;
         border: none;
         height: 30px;
