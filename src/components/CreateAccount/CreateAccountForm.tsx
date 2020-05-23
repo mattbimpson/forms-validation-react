@@ -1,7 +1,12 @@
 import React from 'react';
-import { FormContainer, InputText, FormItem } from './Styles';
+import { FormContainer, InputText, FormItem, InputButton } from './Styles';
 
 const CreateAccountForm: React.FC<any> = () => {
+
+  function submitForm() {
+    
+  }
+
   return (
     <>
       <FormContainer>
@@ -18,6 +23,9 @@ const CreateAccountForm: React.FC<any> = () => {
           <p>Phone:</p>
           { /* todo: move the type into styled component props */ }
           <InputText type="tel"></InputText>
+        </FormItem>
+        <FormItem>
+          <InputButton value="Submit" onClick={submitForm}></InputButton>
         </FormItem>
       </FormContainer>
     </>

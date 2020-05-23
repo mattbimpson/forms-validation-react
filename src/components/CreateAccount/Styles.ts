@@ -5,6 +5,7 @@ export const FormContainer =
         margin: 10px;
         padding: 15px;
         background-color: white;
+        border-radius: 10px;
         width: 50%;
 
         @media (max-height: 500px) {
@@ -23,4 +24,14 @@ export const InputText =
 export const FormItem =
     styled.div`
         margin-bottom: 20px;
+    `;
+
+export const InputButton =
+    styled.input.attrs({ type: 'button' })`
+        border-radius: 5px;
+        border: none;
+        height: 30px;
+        width: 80px;
+        padding: 2px;
+        font-weight: bold;
     `;
