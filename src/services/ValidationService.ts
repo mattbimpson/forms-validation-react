@@ -12,28 +12,28 @@ export enum ValidatorType {
       {
         type: ValidatorType.REQUIRED,
         regex: /^(?!\s*$).+/,
-        failMessage: 'Please enter a value.'
+        message: 'Please enter a value.'
       },
       {
         type: ValidatorType.NOWHITESPACE,
         regex: /^\S+(?: \S+)*$/,
-        failMessage: 'Spaces cannot be entered before or after.'
+        message: 'Spaces cannot be entered before or after.'
       },
       {
         type: ValidatorType.EMAIL,
         regex: /^[^@\s]+@[^@\s]+\.[^@\s]+$/,
-        failMessage: 'Please enter a valid email address.'
+        message: 'Please enter a valid email address.'
       },
       {
         type: ValidatorType.PHONE,
         regex: /^\(?\d{3}\)?[- ]?\d{3}[- ]?\d{4}$/,
-        failMessage: 'Please enter a valid phone number.'
+        message: 'Please enter a valid phone number.'
       }
     ];
   
-    static validate(input: string, validators: ValidatorType[], fieldName: string = '') {
+    static validate(input: string, validators: ValidatorType[]) {
       let valid = (input === null || typeof input === undefined) ? false : true;
-      const failMessages: string[] = [];
+      const messages: string[] = [];
   
       for (const validator of validators) {
         const rule = this.rules.find(x => x.type === validator);
@@ -42,17 +42,15 @@ export enum ValidatorType {
           const result = regex.test(input);
           if (!result) {
             valid = false;
-            if (!rule.failMessage) {
+            if (!rule.message) {
               continue;
             }
-            const replacement = fieldName ? fieldName.replace(/([A-Z])/g, ' $1').toLowerCase() : '';
-            failMessages.push(rule.failMessage.replace('<FIELD_NAME>', replacement));
           }
         }
       }
   
       return {
-        valid, failMessages
+        valid, messages
       };
     }
   }
