@@ -35,3 +35,9 @@ export const InputButton =
         padding: 2px;
         font-weight: bold;
     `;
+
+export const ErrorMessage =
+    styled.p`
+        color: red;
+        font-size: 10px;
+    `;
