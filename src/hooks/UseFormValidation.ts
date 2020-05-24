@@ -5,20 +5,16 @@ export const useFormValidation = (initialValues: any) => {
     const [form, setForm] = useState(initialValues);
 
     function updateForm(fieldName: string, value: string) {
-      for (const item of form) {
-        if (fieldName && item.fieldName !== fieldName) {
-          continue;
-        }
+      const item = form[fieldName];
+      const result = ValidationService.validate(value, item.validators);
+      const updatedField = {
+        ...form[fieldName],
+        valid: result.valid,
+        value,
+        messages: result.messages
+      };
 
-        if (fieldName && item.fieldName === fieldName) { 
-          item.value = value;
-        }
-        const result = ValidationService.validate(item.value, item.validators);
-        item.valid = result.valid;
-        item.messages = result.messages;
-      }
-
-      setForm(form);
+      setForm({ ...form, [fieldName]: updatedField});
     }
   
     return [form, updateForm];
