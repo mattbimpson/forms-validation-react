@@ -1,9 +1,7 @@
 export enum ValidatorType {
     REQUIRED,
     EMAIL,
-    PHONE,
-    NONE,
-    NOWHITESPACE
+    PHONE
   }
   
   export class ValidationService {
@@ -13,11 +11,6 @@ export enum ValidatorType {
         type: ValidatorType.REQUIRED,
         regex: /^(?!\s*$).+/,
         message: 'Please enter a value.'
-      },
-      {
-        type: ValidatorType.NOWHITESPACE,
-        regex: /^\S+(?: \S+)*$/,
-        message: 'Spaces cannot be entered before or after.'
       },
       {
         type: ValidatorType.EMAIL,

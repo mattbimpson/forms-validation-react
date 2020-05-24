@@ -8,7 +8,8 @@ const CreateAccountForm: React.FC<any> = () => {
   const [form, updateForm] = useFormValidation({
     firstName: { value: '', validators: [ValidatorType.REQUIRED] },
     lastName: { value: '', validators: [ValidatorType.REQUIRED] },
-    phone: { value: '', validators: [ValidatorType.REQUIRED, ValidatorType.PHONE] }
+    phone: { value: '', validators: [ValidatorType.REQUIRED, ValidatorType.PHONE] },
+    email: { value: '', validators: [ValidatorType.REQUIRED, ValidatorType.EMAIL] },
   });
   const [formInvalid, setFormInvalid] = useState(true);
 
@@ -20,7 +21,8 @@ const CreateAccountForm: React.FC<any> = () => {
     const invalid =
       !form.firstName.valid ||
       !form.lastName.valid ||
-      !form.phone.valid;
+      !form.phone.valid ||
+      !form.email.valid;
 
     setFormInvalid(invalid);
   }
@@ -46,6 +48,10 @@ const CreateAccountForm: React.FC<any> = () => {
           <p>Phone:</p>
           { /* todo: move the type into styled component props */ }
           <InputText type="tel" onChange={(e: any) => onChange('phone', e.target.value)} value={form.phone.value} maxLength={14}></InputText>
+        </FormItem>
+        <FormItem>
+          <p>Email: </p>
+          <InputText type="text" onChange={(e: any) => onChange('email', e.target.value)} value={form.email.value}></InputText>
         </FormItem>
         <FormItem>
           <InputButton onClick={submitForm} disabled={formInvalid}>Submit</InputButton>
